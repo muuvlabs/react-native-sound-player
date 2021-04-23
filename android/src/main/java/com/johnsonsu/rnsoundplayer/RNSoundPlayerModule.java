@@ -3,6 +3,7 @@ package com.johnsonsu.rnsoundplayer;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.media.AudioManager;
 import android.net.Uri;
 import java.io.File;
 
@@ -204,6 +205,7 @@ public class RNSoundPlayerModule extends ReactContextBaseJavaModule {
     } else {
       Uri uri = Uri.parse(url);
       this.mediaPlayer.reset();
+      this.mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
       this.mediaPlayer.setDataSource(getCurrentActivity(), uri);
       this.mediaPlayer.prepare();
     }
