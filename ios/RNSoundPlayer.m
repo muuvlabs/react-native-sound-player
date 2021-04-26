@@ -108,7 +108,7 @@ RCT_REMAP_METHOD(getInfo,
                                };
         resolve(data);
     }
-    if (self.avPlayer != nil) {
+    } else if (self.avPlayer != nil) {
         CMTime currentTime = [[self.avPlayer currentItem] currentTime];
         CMTime duration = [[[self.avPlayer currentItem] asset] duration];
         NSDictionary *data = @{
@@ -116,6 +116,8 @@ RCT_REMAP_METHOD(getInfo,
                                @"duration": [NSNumber numberWithFloat:CMTimeGetSeconds(duration)]
                                };
         resolve(data);
+    } else {
+        reject(@"event_failure", @"Media player is not instantiated!", nil);
     }
 }
 
